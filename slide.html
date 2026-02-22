@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Đồ Án - Dương Quang Chung</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- THIẾT LẬP CƠ BẢN (LIGHT THEME) --- */
+        :root {
+            --bg-color: #f8fafc;       /* Nền sáng */
+            --card-bg: #ffffff;        /* Nền thẻ trắng */
+            --text-main: #1e293b;      /* Chữ đen xám */
+            --text-light: #64748b;     /* Chữ phụ */
+            --primary: #2563eb;        /* Xanh dương chủ đạo */
+            --accent: #f59e0b;         /* Vàng cam điểm nhấn */
+            --border: #e2e8f0;         /* Viền nhạt */
+        }
+
+        body {
+            background-color: #cbd5e1; /* Màu nền ngoài slide để tạo tương phản */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* --- KHUNG SLIDE --- */
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            box-sizing: border-box;
+        }
+
+        /* Họa tiết trang trí nền */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%);
+            border-radius: 0 0 0 100%;
+            pointer-events: none;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 { margin: 0; color: var(--text-main); }
+        
+        h1 {
+            font-size: 64px;
+            line-height: 1.2;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-title {
+            font-size: 42px;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            width: fit-content;
+        }
+
+        p, li {
+            font-size: 22px;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        /* --- BỐ CỤC --- */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        /* --- CÁC THÀNH PHẦN KHÁC --- */
+        .tech-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 5px;
+            color: white;
+        }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before {
+            content: '•';
+            color: var(--primary);
+            font-size: 30px;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* --- KHUNG CHÈN ẢNH (PLACEHOLDER) --- */
+        .image-placeholder {
+            width: 100%;
+            height: 400px; /* Chiều cao cố định cho ảnh */
+            border: 3px dashed #94a3b8;
+            background-color: #f1f5f9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #64748b;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Hoặc 'contain' nếu muốn thấy toàn bộ ảnh */
+        }
+
+        .image-caption {
+            font-size: 16px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* --- Footer Slide --- */
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #94a3b8;
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: TIÊU ĐỀ -->
+    <div class="slide">
+        <div class="content" style="align-items: center; text-align: center;">
+            <div style="font-size: 30px; color: var(--primary); font-weight: bold; letter-spacing: 2px; margin-bottom: 20px;">BÁO CÁO ĐỒ ÁN</div>
+            <h1>PROJECT 1</h1>
+            <div style="width: 150px; height: 6px; background: var(--accent); margin: 30px 0;"></div>
+            <h2 style="font-size: 40px; color: var(--text-main);">Xây Dựng Website Bán Sách Trực Tuyến</h2>
+            <p class="subtitle">(BookStore E-Commerce)</p>
+            
+            <div style="margin-top: 60px; text-align: left; background: white; padding: 30px 60px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <p><strong>Sinh viên thực hiện:</strong> Dương Quang Chung</p>
+                <p><strong>Mã số sinh viên:</strong> 20225266</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>Project 1 - 2024</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: TỔNG QUAN -->
+    <div class="slide">
+        <h2 class="slide-title">1. Tổng Quan Đề Tài</h2>
+        <div class="content grid-2">
+            <div>
+                <h3>Đặt Vấn Đề</h3>
+                <p style="margin-top: 15px;">
+                    Nhu cầu mua sắm trực tuyến ngày càng tăng cao, đặc biệt là các sản phẩm văn hóa như sách. Các cửa hàng truyền thống gặp khó khăn trong việc quản lý kho, tiếp cận khách hàng và thống kê doanh thu thủ công.
+                </p>
+                <br>
+                <h3>Mục Tiêu</h3>
+                <p style="margin-top: 15px;">
+                    Xây dựng hệ thống <strong>BookStore</strong> hoàn chỉnh giúp:
+                </p>
+                <ul>
+                    <li>Người dùng dễ dàng tìm kiếm và mua sách online.</li>
+                    <li>Quản trị viên quản lý kho hàng, đơn hàng và báo cáo doanh thu hiệu quả.</li>
+                </ul>
+            </div>
+            <div class="card" style="display: flex; align-items: center; justify-content: center; background: #e0f2fe;">
+                <i class="fa-solid fa-book-open" style="font-size: 150px; color: var(--primary);"></i>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>2/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: CÔNG NGHỆ SỬ DỤNG -->
+    <div class="slide">
+        <h2 class="slide-title">2. Công Nghệ Sử Dụng</h2>
+        <div class="content">
+            <p>Hệ thống được xây dựng trên nền tảng <strong>MERN Stack</strong> hiện đại:</p>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px;">
+                <div class="card" style="text-align: center;">
+                    <i class="fa-brands fa-react" style="font-size: 60px; color: #61DBFB; margin-bottom: 15px;"></i>
+                    <h3>ReactJS</h3>
+                    <p style="font-size: 16px;">Frontend tương tác mượt mà (SPA).</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <i class="fa-brands fa-node" style="font-size: 60px; color: #68A063; margin-bottom: 15px;"></i>
+                    <h3>Node.js</h3>
+                    <p style="font-size: 16px;">Xử lý logic Server mạnh mẽ.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <i class="fa-solid fa-server" style="font-size: 60px; color: #000; margin-bottom: 15px;"></i>
+                    <h3>Express</h3>
+                    <p style="font-size: 16px;">Framework xây dựng RESTful API.</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <i class="fa-solid fa-database" style="font-size: 60px; color: #47A248; margin-bottom: 15px;"></i>
+                    <h3>MongoDB</h3>
+                    <p style="font-size: 16px;">Cơ sở dữ liệu NoSQL linh hoạt.</p>
+                </div>
+            </div>
+            <div style="margin-top: 30px; text-align: center;">
+                <span class="tech-badge" style="background: #38bdf8;">Tailwind CSS</span>
+                <span class="tech-badge" style="background: #a855f7;">JWT Auth</span>
+                <span class="tech-badge" style="background: #f59e0b;">Multer</span>
+                <span class="tech-badge" style="background: #22c55e;">XLSX Import</span>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>3/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: KIẾN TRÚC HỆ THỐNG -->
+    <div class="slide">
+        <h2 class="slide-title">3. Kiến Trúc Hệ Thống</h2>
+        <div class="content grid-2">
+            <div>
+                <h3>Mô hình Client-Server</h3>
+                <ul>
+                    <li><strong>Frontend:</strong> Giao tiếp với Backend thông qua các API (Fetch).</li>
+                    <li><strong>Backend:</strong> Nhận request, xử lý logic, tương tác Database và trả về JSON.</li>
+                    <li><strong>Database:</strong> Lưu trữ Users, Products, Orders.</li>
+                </ul>
+                <div class="card" style="margin-top: 20px; background: #fffbeb; border-color: #fcd34d;">
+                    <strong>Điểm nổi bật:</strong>
+                    <p style="font-size: 18px; margin-top: 5px;">Sử dụng cơ chế xác thực <strong>JWT (JSON Web Token)</strong> giúp bảo mật phiên đăng nhập mà không cần lưu session phía server (Stateless).</p>
+                </div>
+            </div>
+            <div class="card" style="display: flex; align-items: center; justify-content: center;">
+                <!-- Placeholder cho biểu đồ kiến trúc -->
+                <i class="fa-solid fa-network-wired" style="font-size: 120px; color: var(--text-light);"></i>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>4/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: CHỨC NĂNG NGƯỜI DÙNG -->
+    <div class="slide">
+        <h2 class="slide-title">4. Chức Năng Người Dùng (Khách)</h2>
+        <div class="content">
+            <div class="grid-2">
+                <div class="card">
+                    <h3><i class="fa-solid fa-magnifying-glass" style="color: var(--primary);"></i> Tìm Kiếm & Lọc</h3>
+                    <p>Tìm sách theo tên, tác giả. Bộ lọc thông minh theo thể loại (Fiction, Technology...), sắp xếp theo giá, bán chạy, đánh giá cao.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-cart-shopping" style="color: var(--primary);"></i> Giỏ Hàng & Đặt Hàng</h3>
+                    <p>Thêm sản phẩm, điều chỉnh số lượng, xóa sản phẩm. Quy trình đặt hàng (Checkout) kiểm tra tồn kho theo thời gian thực.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-star" style="color: var(--primary);"></i> Đánh Giá & Bình Luận</h3>
+                    <p>Chỉ cho phép đánh giá khi <strong>đã mua hàng</strong>. Tính điểm sao trung bình tự động.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-user" style="color: var(--primary);"></i> Tài Khoản</h3>
+                    <p>Đăng ký, đăng nhập, xem lại lịch sử đơn hàng và trạng thái đơn hàng.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>5/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: CHỨC NĂNG QUẢN TRỊ (ADMIN) -->
+    <div class="slide">
+        <h2 class="slide-title">5. Chức Năng Quản Trị (Admin)</h2>
+        <div class="content grid-2">
+            <div>
+                <ul>
+                    <li><strong>Quản Lý Sản Phẩm:</strong> Thêm, Sửa, Xóa sách. Cập nhật thông tin chi tiết (Giá, Tồn kho, Tác giả...).</li>
+                    <li><strong>Import Excel:</strong> Tính năng cao cấp cho phép nhập hàng loạt dữ liệu sách từ file Excel, tiết kiệm thời gian nhập liệu.</li>
+                    <li><strong>Dashboard Thống Kê:</strong>
+                        <ul style="font-size: 18px; color: var(--text-light);">
+                            <li>Tổng doanh thu.</li>
+                            <li>Số lượng đơn hàng.</li>
+                            <li>Top khách hàng thân thiết.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <i class="fa-solid fa-chart-line" style="font-size: 80px; color: var(--accent); margin-bottom: 20px;"></i>
+                <p>Hệ thống báo cáo trực quan</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>6/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: CƠ SỞ DỮ LIỆU -->
+    <div class="slide">
+        <h2 class="slide-title">6. Thiết Kế Cơ Sở Dữ Liệu</h2>
+        <div class="content">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead style="background: var(--primary); color: white;">
+                    <tr>
+                        <th style="padding: 15px; text-align: left;">Collection</th>
+                        <th style="padding: 15px; text-align: left;">Mô tả</th>
+                        <th style="padding: 15px; text-align: left;">Các trường chính</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 15px; font-weight: bold;">Users</td>
+                        <td style="padding: 15px;">Lưu thông tin người dùng & Admin</td>
+                        <td style="padding: 15px;">email, password, role, cart</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 15px; font-weight: bold;">Products</td>
+                        <td style="padding: 15px;">Thông tin sách</td>
+                        <td style="padding: 15px;">title, price, stock, sold, rating, reviews[]</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 15px; font-weight: bold;">Orders</td>
+                        <td style="padding: 15px;">Lưu đơn hàng đã đặt</td>
+                        <td style="padding: 15px;">user, items[], date, totalAmount</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>7/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: DEMO - TRANG CHỦ -->
+    <div class="slide">
+        <h2 class="slide-title">7. Demo: Trang Chủ & Tìm Kiếm</h2>
+        <div class="content">
+            <!-- KHUNG CHÈN ẢNH -->
+            <div class="image-placeholder">
+                <!-- BẠN HÃY THAY THẾ THẺ IMG DƯỚI ĐÂY BẰNG ẢNH CHỤP MÀN HÌNH CỦA BẠN -->
+                <i class="fa-regular fa-image" style="font-size: 48px; margin-bottom: 10px;"></i>
+                <strong>[CHỖ NÀY ĐỂ ẢNH CHỤP MÀN HÌNH TRANG CHỦ]</strong>
+                <p style="font-size: 14px;">(Chụp phần Danh mục, Bộ lọc và Danh sách sản phẩm)</p>
+                <!-- Ví dụ: <img src="anh_trang_chu.png" alt="Trang chủ"> -->
+            </div>
+            <p class="image-caption">Giao diện trang chủ với bộ lọc thể loại, sắp xếp và tìm kiếm.</p>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>8/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: DEMO - CHI TIẾT & GIỎ HÀNG -->
+    <div class="slide">
+        <h2 class="slide-title">8. Demo: Chi Tiết & Đánh Giá</h2>
+        <div class="content grid-2">
+            <div>
+                <div class="image-placeholder">
+                    <!-- CHỖ CHÈN ẢNH CHI TIẾT SẢN PHẨM -->
+                    <i class="fa-regular fa-image" style="font-size: 40px;"></i>
+                    <p style="font-size: 14px;">[ẢNH TRANG CHI TIẾT + REVIEW]</p>
+                </div>
+                <p class="image-caption">Trang chi tiết hiển thị thông tin và đánh giá.</p>
+            </div>
+            <div>
+                <div class="image-placeholder">
+                    <!-- CHỖ CHÈN ẢNH GIỎ HÀNG -->
+                    <i class="fa-regular fa-image" style="font-size: 40px;"></i>
+                    <p style="font-size: 14px;">[ẢNH GIỎ HÀNG / ORDERS]</p>
+                </div>
+                <p class="image-caption">Giỏ hàng và lịch sử đơn hàng.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>9/10</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: KẾT LUẬN -->
+    <div class="slide">
+        <h2 class="slide-title">9. Kết Luận & Hướng Phát Triển</h2>
+        <div class="content">
+            <div class="card" style="margin-bottom: 30px; border-left: 5px solid var(--primary);">
+                <h3>Kết Quả Đạt Được</h3>
+                <p style="margin-top: 10px;">Hoàn thiện website bán sách Fullstack với đầy đủ các tính năng thương mại điện tử cơ bản và nâng cao (Thống kê, Import Excel).</p>
+            </div>
+            
+            <div class="card" style="border-left: 5px solid var(--accent);">
+                <h3>Hướng Phát Triển</h3>
+                <ul style="margin-top: 10px;">
+                    <li>Tích hợp thanh toán trực tuyến (VNPAY, Momo).</li>
+                    <li>Gợi ý sách dựa trên lịch sử mua hàng (AI Recommendation).</li>
+                    <li>Gửi email xác nhận đơn hàng tự động.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 50px; text-align: center;">
+                <h1 style="font-size: 48px;">CẢM ƠN THẦY VÀ CÁC BẠN!</h1>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Dương Quang Chung - 20225266</span>
+            <span>10/10</span>
+        </div>
+    </div>
+
+</body>
+</html>
