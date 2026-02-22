@@ -16,9 +16,9 @@ Một hệ thống quản lý cửa hàng sách và bán hàng trực tuyến (E
 ## 💻 Công nghệ sử dụng (Tech Stack)
 
 * **Backend:** Node.js, Express.js
-* **Frontend:** (Điền công nghệ bạn dùng ở đây, ví dụ: HTML/CSS/JS thuần, React, hoặc Template Engine như EJS/Pug)
-* **Cơ sở dữ liệu (Database):** (Điền DB bạn dùng, ví dụ: MySQL, SQL Server, hoặc PostgreSQL)
-* **Khác:** Git & GitHub để quản lý mã nguồn.
+* **Frontend:** React
+* **Cơ sở dữ liệu (Database): MongoDB** 
+
 
 
 ## ⚙️ Hướng dẫn cài đặt và chạy dự án (Installation)
